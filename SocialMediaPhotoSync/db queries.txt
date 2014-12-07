@@ -1,0 +1,24 @@
+DROP TABLE social_app.user_profile;
+CREATE TABLE user_profile 
+    (u_id TEXT PRIMARY KEY    NOT NULL,
+     u_name           TEXT    NOT NULL,
+	 u_pwd		      TEXT    NOT NULL, 			
+     access_token     TEXT     
+	 );
+CREATE TABLE albums 
+    (album_id TEXT PRIMARY KEY    NOT NULL,
+     album_name           TEXT    ,
+	 cover_uri		      TEXT    , 			
+     album_uri     TEXT    NOT NULL,
+	 sync 		 INTEGER	NOT NULL,	
+	 u_id	TEXT	NOT NULL,	
+	 FOREIGN KEY (u_id) REFERENCES user_profile(u_id)
+	 );
+CREATE TABLE photos 
+    (photo_id TEXT PRIMARY KEY    NOT NULL,
+   	 photo_uri		      TEXT    , 			
+     album_id     TEXT    NOT NULL,
+	 FOREIGN KEY (album_id) REFERENCES albums(album_id)
+	 );
+	
+	 

@@ -1,0 +1,173 @@
+ CREATE TABLE user_profile 
+                (id TEXT PRIMARY KEY     NOT NULL,
+                 name           TEXT    NOT NULL, 
+                 token          TEXT    NOT NULL, 
+                 expiry_date    TEXT);
+				 
+				 
+				 
+				 UPDATE user_profile SET token = ?, expiry_date = ? WHERE id= ?;
+				 
+				 
+
+public class Main extends Application {
+
+ 
+
+    private Scene scene;
+
+    private BorderPane root;
+
+    private Button reloadButton, goButton;
+
+    private TextField addressField;
+
+    private WebView webView;
+
+    private WebEngine webEngine;
+
+     
+
+    @Override
+
+    public void start(Stage stage) throws Exception {
+
+        System.out.println(Thread.currentThread().getName());
+
+         
+
+        //The vertical box that will hold our navigation buttons.
+
+        HBox hBox = new HBox(5);
+
+        hBox.setAlignment(Pos.CENTER);
+
+         
+
+        //Our buttons for navigation.
+
+        reloadButton = new Button("Reload");
+
+        goButton = new Button("go");
+
+         
+
+        //Add listeners to the buttons.
+
+        reloadButton.setOnAction(reload);
+
+        goButton.setOnAction(go);
+
+         
+
+        //The TextField for entering web addresses.
+
+        addressField = new TextField("Enter Web address here...");
+
+        addressField.setPrefColumnCount(50); //make the field at least 50 columns wide.
+
+         
+
+        //Add all out navigation nodes to the vbox.
+
+        hBox.getChildren().addAll(reloadButton, goButton, addressField);
+
+         
+
+         
+
+        //Our weiv that display ther page.
+
+        webView = new WebView();
+
+         
+
+        //the engine that manages our pages.
+
+        webEngine = webView.getEngine();
+
+        webEngine.setJavascriptEnabled(true);
+
+        webEngine.load("http://www.yahoo.com");
+
+         
+
+        //our main app layout with 5 regions.
+
+        BorderPane root = new BorderPane();
+
+        root.setPrefSize(1024, 768);
+
+                 
+
+        //Add every node to the BorderPane.
+
+        root.setTop(hBox);
+
+        root.setCenter(webView);
+
+         
+
+        //Our scene is where all the action in JavaFX happens.  A scene holds all Nodes, and its root node is our BorderPane.
+
+        scene = new Scene(root);
+
+ 
+
+        //the stage manages the scene.
+
+        stage.setTitle("JavaFX Web Browser");
+
+        stage.setScene(scene);
+
+        stage.show();
+
+    }
+
+     
+
+    /////////////////////////////////////start event handlers for navigation///////////////////////////////
+
+    private EventHandler<ActionEvent> reload = new EventHandler<ActionEvent>() {
+
+        @Override
+
+        public void handle(ActionEvent event) {
+
+            webEngine.reload();
+
+         
+
+        }
+
+    };
+
+     
+
+    private EventHandler<ActionEvent> go = new EventHandler<ActionEvent>() {
+
+        @Override
+
+        public void handle(ActionEvent event) {
+
+            System.out.println(addressField.getText());
+
+            webEngine.load("http://"+addressField.getText());
+
+        }
+
+    };
+
+///////////////////////////////////////end event handlers for navigation//////////////////////////////////
+
+     
+
+    //main method is required for ides without javafxpackagertool support.
+
+    public static void main(String[] args) {
+
+        launch(args);
+
+    }
+
+}

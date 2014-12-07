@@ -1,0 +1,6 @@
+Test facebook users
+	Thilina Madumal		100005213296800	thilina_pldocpn_madumal@tfbnw.net	
+	Dulitha Kularathne	100004830046794	dulitha_czoyoed_kularathne@tfbnw.net	
+	Hiran Kulasekara	100004111546790	hiran_dmrrblw_kulasekara@tfbnw.net
+	&& location.contains("SEProjectApplication")
+	E:/movable/NetBeansProjects/SocialApp_UI
