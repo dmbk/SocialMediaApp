@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>User selected folder</comment>
+<entry key="user.folder">E:/facebook test albums</entry>
+<entry key="app.home">E:/movable/NetBeansProjects/SocialApp_UI</entry>
+<entry key="User Folder">E:/facebook test albums</entry>
+</properties>
